@@ -7,11 +7,16 @@
   <!--
   Embed needed js libraries for video player. Note, libraries needs to be hosted on your server, under /js folder.
    -->
+    <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+  <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+
+   
   <!--
   Location for CSS if needed. Note, cascade style sheets needs to be hosted on your server, under /css folder.
   -->
-   
-
+    <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+	
 
 </head>
 <body>
@@ -20,17 +25,54 @@
   <!--
   location for your player window
   -->
-  
-	<button type="button">Play</button>
-	<button type="button">Pause</button>
-	<button type="button">Stop</button>
-	<button type="button">Jump to 5 sec forward</button>
-	<button type="button">Jump to 5 sec backwards</button>	
+ 
+
+ 
+	<video id="my_video_1" class="video-js vjs-default-skin" preload="auto" width="640" height="268"
+  data-setup='{}'>
+		<source 
+			src= 'https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8',
+			type = 'application/x-mpegURL'
+		>
+	</video>
+ 
+
+  <script>
+    const player = videojs('my_video_1'); 
+	function playVid() { 
+		player.play(); 
+	} 
+	function pauseVid() { 
+		player.pause(); 
+	}
+	function stopVid() { 
+		player.pause();
+		player.currentTime(0);
+	}
+	function forwardVid() { 
+		player.currentTime(player.currentTime() + 5);
+		
+	}
+	function reverseVid() { 
+		player.currentTime(player.currentTime() - 5); 
+	}
+	
+  </script>
+        
+
+
+  </br>
+	<button onclick="playVid()" type="button">Play</button>
+	<button onclick="pauseVid()" type="button">Pause</button>
+	<button onclick="stopVid()" type="button">Stop</button>
+	<button onclick="forwardVid()" type="button">Jump to 5 sec forward</button>
+	<button onclick="reverseVid()" type="button">Jump to 5 sec backwards</button>
 	
 	<p>Playlist</p>
 	
-	<input type="text" name="url1" size="100" value="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8"><button type="button">Load</button><br>
-	<input type="text" name="url2" size="100" value="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8"><button type="button">Load</button><br>
+	
 	<button type="button">Shuffle</button>
+	
+	
 </body>
 </html>
